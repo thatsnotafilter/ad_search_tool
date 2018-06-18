@@ -7,12 +7,13 @@ A single, google search form inspired, web page to search for any objects in you
 - LDAPS
 
 Technologies used: Python, Django (Python Web Framework) module, LDAP3 module and W3 CSS framework
+- https://www.python.org/
 - https://docs.djangoproject.com
 - https://ldap3.readthedocs.io
 - https://www.w3schools.com/w3css/
 
 PREREQ:
-- basic knowledge of Django
+- basic knowledge of Python, Django amd Active Directory
 - Python 3.6.5+
 - Python modules Django (2.0+) and LDAP3 (2.+)
 
