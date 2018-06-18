@@ -13,9 +13,9 @@ Technologies used: Python, Django (Python Web Framework) module, LDAP3 module an
 - https://www.w3schools.com/w3css/
 
 PREREQ:
-- basic knowledge of Python, Django amd Active Directory
-- Python 3.6.5+
-- Python modules Django (2.0+) and LDAP3 (2.+)
+- basic knowledge of Python, Django and Active Directory
+- Python 3.6+
+- Python modules Django (2+) and LDAP3 (2+)
 
 HOW TO RUN:
 - create django project (django-admin.py startproject adsearch)
