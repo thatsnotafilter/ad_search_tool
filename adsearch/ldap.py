@@ -1,7 +1,5 @@
 from django.conf import settings
 from ldap3 import Server, Connection, ALL, SYNC, SIMPLE, SUBTREE, ALL_ATTRIBUTES
-from django.contrib.auth.models import User, Group
-from django.http import HttpResponse
 
 
 class LDAPBackend(object):
