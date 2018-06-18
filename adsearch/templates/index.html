@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+
+    <title>AD Search Tool</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <body>
+
+	<form class="w3-container w3-padding" action="/" method="post">
+	    {% csrf_token %}
+	    {{ form }}
+	    <button class="w3-button w3-margin-top w3-block w3-indigo w3-hover-deep-orange" value="Submit" type="submit">Search</button>
+	</form>
+
+	{% if results %}
+	    <h4 class="w3-text-white">Search results: {{ results|length }}</h4>
+	    <div class="w3-content w3-padding-16">
+		<ul class="w3-ul w3-card-4 w3-white">
+		    {% for dict in results %}
+			<li class="w3-bar" id="info_{{ dict.sAMAccountName }}">
+			    <div class="w3-content">
+				<span onclick="info_{{ dict.sAMAccountName }}.style.display='none'" class="w3-bar-item w3-button w3-white w3-medium w3-right">×</span>
+				<div class="w3-dropdown-hover w3-right">
+				    <button class="w3-button">...</button>
+				    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+					<span onclick="show('data_{{ dict.sAMAccountName }}')" class="w3-bar-item w3-button">all attributes</span>
+				    </div>
+				</div>
+
+				{% if "user" in dict.objectClass %}
+				    {% if dict.userAccountControl == 544 or dict.userAccountControl == 512 or dict.userAccountControl == 66048 %}
+					<img src="/static/icons/user.png" class="w3-bar-item w3-circle w3-hide-small w3-grayscale-max" style="width:85px">
+				    {% else %}
+					<img src="/static/icons/user.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+				    {% endif %}
+				{% endif %}
+
+				{% if "group" in dict.objectClass %}
+				    <img src="/static/icons/group.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+				{% endif %}
+
+				<div class="w3-bar-item">
+				    {% if "user" in dict.objectClass %}
+					{% if dict.displayName %}
+					    <span class="w3-large">{{ dict.displayName }}</span><br>
+					{% elif "computer" in dict.objectClass %}
+					    <span class="w3-large">{{ dict.sAMAccountName }}</span><br>
+					{% endif %}
+				    {% else %}
+					<span class="w3-large">{{ dict.sAMAccountName }}</span><br>
+				    {% endif %}
+				    {% if "user" in dict.objectClass %}
+					{% if dict.title %}
+					    <span>{{ dict.title }}</span>
+					{% elif dict.funetEduPersonStudentID %}
+					    <span>{{ dict.funetEduPersonStudentID.0 }}</span>
+					{% elif "computer" in dict.objectClass %}
+					    <span>{{ dict.dNSHostName }}</span>
+					{% else %}
+					    <span>{{ dict.description.0 }}</span>
+					{% endif %}
+				    {% endif %}
+				    {% if "group" in dict.objectClass %}
+					<span>{{ dict.description.0 }}</span>
+				    {% endif %}
+				</div>
+
+				<br>
+				<br>
+
+				<div id="data_{{ dict.sAMAccountName }}" class="w3-content w3-padding-small w3-hide w3-margin">
+				    <table class="w3-table-all w3-tiny">
+					{% for key, value in dict.items|dictsort:0 %}
+					    <tr>
+						{% if key == 'description' %}
+						    <th>{{ key }}</th>
+						    <td>
+							{% for entry in value %}
+							    {{ entry }}<br>
+							{% endfor %}
+						    </td>
+						{% elif key == 'directReports' %}
+						    <th>{{ key }}</th>
+						    <td>
+							{% for entry in value %}
+							    {{ entry }}<br>
+							{% endfor %}
+						    </td>
+						{% elif key == 'mail' %}
+						    <th>{{ key }}</th>
+						    <td>
+							<a href="mailto:{{ value }}">{{ value }}</a><br>
+						    </td>
+						{% elif key == 'member' %}
+						    <th>{{ key }}</th>
+						    <td>
+							{% for entry in value %}
+							    {{ entry }}<br>
+							{% endfor %}
+						    </td>
+						{% elif key == 'memberOf' %}
+						    <th>{{ key }}</th>
+						    <td>
+							{% for entry in value %}
+							    {{ entry }}<br>
+							{% endfor %}
+						    </td>
+						{% elif key == 'servicePrincipalName' %}
+						    <th>{{ key }}</th>
+						    <td>
+							{% for entry in value %}
+							    {{ entry }}<br>
+							{% endfor %}
+						    </td>
+						{% elif key == 'proxyAddresses' %}
+						    <th>{{ key }}</th>
+						    <td>
+							{% for entry in value %}
+							    {{ entry }}<br>
+							{% endfor %}
+						    </td>
+						{% else %}
+						    <th>{{ key }}</th>
+						    <td>{{ value|force_escape }}</td>
+						{% endif %}
+				    	    </tr>
+					{% endfor %}
+				    </table>
+				</div>
+      		    	    </div>
+    			</li>
+		    {% endfor %}
+		</<ul>
+	    </div>
+	{% endif %}
+
+    <script>
+
+    function show(id) {
+	var x = document.getElementById(id);
+	if (x.className.indexOf("w3-show") == -1) {
+	    x.className += " w3-show";
+	} else { 
+	    x.className = x.className.replace(" w3-show", "");
+	}
+    }
+
+    </script>
+
+    </body>
+
+</html>
