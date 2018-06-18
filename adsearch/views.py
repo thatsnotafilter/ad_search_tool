@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.shortcuts import render
-from adsearch import ldap
+from adsearch import ldap, validator
 from .forms import SearchForm
 
 
@@ -51,8 +51,9 @@ def index(request):
                         results.extend([entry])
 
             if len(results) > 0:
-                # validation holder
-                pass
+                validate = validator.attr_validator()
+                ad_search_results = validate.filter_user_attr(results)
+                comments = validate.get_comments(results)
                     
 
     # if a GET (or any other method) we'll create a blank form
