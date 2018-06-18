@@ -15,7 +15,7 @@ Prereq:
 HOW TO RUN:
 - create django project (django-admin.py startproject adsearch)
 - copy provided files to your django project folder (overwrite as needed)
-- modify adsearch\settings.py last two lines to match your AD environment
-- modify adsearch\ldap.py lines 22 and 23 user and password to match a domain user in your AD environment
+- modify adsearch/settings.py last two lines to match your AD environment
+- modify adsearch/ldap.py lines 22 and 23 user and password to match a domain user in your AD environment
 - run django server (python manage.py runserver 0.0.0.0:8000)
 - access the site from the host http://localhost:8000
