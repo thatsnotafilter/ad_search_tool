@@ -9,6 +9,7 @@ A single, google search form inspired, web page to search for any objects in you
 Technologies used: Python, Django (Python Web Framework) module, LDAP3 module and W3 CSS framework.
 
 Prereq:
+- basic knowledge of Django
 - Python 3.6.5+
 - Python modules Django (2.0+) and LDAP3 (2.+)
 
