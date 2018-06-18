@@ -6,9 +6,12 @@ A single, google search form inspired, web page to search for any objects in you
 - responsive HTML template for big and small screens
 - LDAPS
 
-Technologies used: Python, Django (Python Web Framework) module, LDAP3 module and W3 CSS framework.
+Technologies used: Python, Django (Python Web Framework) module, LDAP3 module and W3 CSS framework
+- https://docs.djangoproject.com
+- https://ldap3.readthedocs.io
+- https://www.w3schools.com/w3css/
 
-Prereq:
+PREREQ:
 - basic knowledge of Django
 - Python 3.6.5+
 - Python modules Django (2.0+) and LDAP3 (2.+)
