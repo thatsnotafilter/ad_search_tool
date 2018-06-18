@@ -74,7 +74,14 @@
 				    <table class="w3-table-all w3-tiny">
 					{% for key, value in dict.items|dictsort:0 %}
 					    <tr>
-						{% if key == 'description' %}
+						{% if key == 'comments' %}
+						    <th>{{ key }}</th>
+						    <td>
+							{% for entry in value %}
+							    {{ entry }}<br>
+							{% endfor %}
+						    </td>
+						{% elif key == 'description' %}
 						    <th>{{ key }}</th>
 						    <td>
 							{% for entry in value %}
