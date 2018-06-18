@@ -60,7 +60,11 @@ class attr_validator(object):
                                 comments.append('user accunt is not NORMAL ACCOUNT (userAccountControl)')
                     elif key in usr_problem_attrs:
                         if key == 'accountExpires':
-                            if value < datetime.now(timezone.utc):
+                            if value == datetime(9999, 12, 31, 23, 59, 59, 999999):
+                                comments.append('user account never expires (accountExpires)')
+                            elif value == datetime(1601, 1, 1, 00, 00, 00, tzinfo=timezone.utc):
+                                comments.append('user account never expires (accountExpires)')
+                            elif value < datetime.now(timezone.utc):
                                 comments.append('user account has expired (accountExpires)')
                         elif key == 'pwdLastSet':
                             expiry_date = value + timedelta(days = settings.PASSWORD_AGE_MAX)
