@@ -19,8 +19,8 @@ class LDAPBackend(object):
             self.s,
             auto_bind = True,
             client_strategy = SYNC,
-            user = 'CN=adsearch,OU=users,DC=ad,DC=company,DC=com',
-            password = 'herewego',
+            user = settings.AD_USER,
+            password = settings.AD_USER_PASSWORD,
             authentication = SIMPLE,
             check_names = True
             )
