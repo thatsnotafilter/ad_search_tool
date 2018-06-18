@@ -15,8 +15,8 @@
 	</form>
 
 	{% if results %}
-	    <h4 class="w3-text-white">Search results: {{ results|length }}</h4>
 	    <div class="w3-content w3-padding-16">
+		<h4>Search results: {{ results|length }}</h4>
 		<ul class="w3-ul w3-card-4 w3-white">
 		    {% for dict in results %}
 			<li class="w3-bar" id="info_{{ dict.sAMAccountName }}">
