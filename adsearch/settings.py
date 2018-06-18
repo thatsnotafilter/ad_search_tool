@@ -125,3 +125,5 @@ STATIC_URL = '/static/'
 
 AD_DNS_NAME = 'ad.company.com'
 AD_BASE_DN = 'DC=ad,DC=company,DC=com'
+AD_USER = 'CN=adreader,OU=users,DC=ad,DC=company,DC=com'
+AD_USER_PASSWORD = 'thisoughttobeenoughforevery1'
